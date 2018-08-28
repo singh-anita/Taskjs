@@ -2,7 +2,7 @@
  * @description function to get options object and used xmlhttprequest to Initializes a request and 
  * If the request is asynchronous ,
  *  this method returns as soon as the request is sent.
- * @param {*} options object
+ * @param {object} options 
  * @return {Promise object}
  */
 var getUserData         = (options)  => {
@@ -35,8 +35,8 @@ var getUserData         = (options)  => {
 };
 /**
  * @description function to get data which is in JSON array format, passed it to html table
- * @param {*} data 
- * @return {}
+ * @param {Array} data 
+ * @return {} default
  */
 var createTableForUser  = (data) => {
     console.log(data)
