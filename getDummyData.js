@@ -34,7 +34,7 @@ var getUserData         = (options)  => {
     });
 };
 /**
- * @description function to pass data which is in JSON array format, pass it to html table
+ * @description function to get data which is in JSON array format, passed it to html table
  * @param {*} data 
  * @return {}
  */
@@ -70,10 +70,3 @@ getUserData(options)
     .catch((error) => {
         console.log('error occured ' + error);
     })
-
-
-/**
- * 1) Utility Functions 
- * 2) 
- * 
- */      
