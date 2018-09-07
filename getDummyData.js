@@ -33,21 +33,49 @@ var getUserData         = (options)  => {
         request.send(); // send the request
     });
 };
+
 /**
  * @description function to get data which is in JSON array format, passed it to html table
  * @param {Array} data 
  * @return {} default
  */
 var createTableForUser  = (data) => {
-    console.log(data)
-    
-    var tbody           = document.getElementById('tbody1');
+    var tbl = document.createElement('table');
+    tbl.style.width = '60%';
+    tbl.setAttribute('border', '1');
+    tbl.setAttribute('cellspacing', '0');
+    tbl.setAttribute('cellpadding', '5');
+    console.log(data);
+
+    // retrieve column header
+    var col = []; // define an empty array
+    data.map((item) => {
+        Object.keys(item).map((key) => {
+            if (col.indexOf(key) === -1 && item[key] !== '') {
+                col.push(key);
+            }
+        })
+    })
+
+    var thead           = document.createElement('thead');
+    var trow          = document.createElement('tr');
+
+    // ADD COLUMN HEADER TO ROW OF TABLE HEAD.
+    col.map((cell)=>{
+        var th   = document.createElement('th');
+        th.appendChild(document.createTextNode(cell));
+        trow.appendChild(th)
+    })
+    thead.appendChild(trow);
+    tbl.appendChild(thead);
+
+    var tbody           = document.createElement('tbody');
 
     data.map((item) => {
         var tr          = document.createElement('tr');
 
         Object.keys(item).map((key) => {
-            if (key     != "profile_image") {
+            if (item[key] !== '') {
                 var td   = document.createElement('td')
                 td.appendChild(document.createTextNode(item[key]))
                 tr.appendChild(td)
@@ -56,6 +84,9 @@ var createTableForUser  = (data) => {
 
         tbody.appendChild(tr);
     })
+
+    tbl.appendChild(tbody);
+    document.getElementById('empTable').appendChild(tbl);
 };
 
 var options              = {
@@ -70,3 +101,10 @@ getUserData(options)
     .catch((error) => {
         console.log('error occured ' + error);
     })
+
+
+/**
+ * 1) Utility Functions 
+ * 2) 
+ * 
+ */      
